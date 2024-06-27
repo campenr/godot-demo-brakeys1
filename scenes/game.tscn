@@ -1,11 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://c7m6jdwokkydc"]
+[gd_scene load_steps=16 format=3 uid="uid://c7m6jdwokkydc"]
 
 [ext_resource type="PackedScene" uid="uid://cahi0k2wvggek" path="res://scenes/player.tscn" id="1_0vxh4"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_itnnc"]
 [ext_resource type="Texture2D" uid="uid://b750el6m1tust" path="res://assets/sprites/world_tileset.png" id="2_kr26t"]
 [ext_resource type="PackedScene" uid="uid://j0ehnke5yo7e" path="res://scenes/platform.tscn" id="3_7vs8w"]
 [ext_resource type="PackedScene" uid="uid://lj1cqpe7mvre" path="res://scenes/coin.tscn" id="4_eao0d"]
 [ext_resource type="PackedScene" uid="uid://c3jwhlo75i3de" path="res://scenes/killzone.tscn" id="5_n8bv4"]
 [ext_resource type="PackedScene" uid="uid://bj4fpgbhmm4ui" path="res://scenes/enemy.tscn" id="6_5s1hy"]
+[ext_resource type="PackedScene" uid="uid://kpa8a5brng04" path="res://scenes/hud.tscn" id="7_oml1y"]
+[ext_resource type="Script" path="res://scripts/ui.gd" id="9_rvq5q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fhvfx"]
 texture = ExtResource("2_kr26t")
@@ -411,6 +414,21 @@ texture = ExtResource("2_kr26t")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_fhvfx")
 
+[sub_resource type="Animation" id="Animation_tg4po"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(227, -26)]
+}
+
 [sub_resource type="Animation" id="Animation_47j16"]
 resource_name = "move"
 length = 1.5
@@ -428,21 +446,6 @@ tracks/0/keys = {
 "values": [Vector2(227, -26), Vector2(303, -26)]
 }
 
-[sub_resource type="Animation" id="Animation_tg4po"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(227, -26)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vw4ca"]
 _data = {
 "RESET": SubResource("Animation_tg4po"),
@@ -452,6 +455,10 @@ _data = {
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_3d1md"]
 
 [node name="Game" type="Node2D"]
+
+[node name="GameManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_itnnc")
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2(-3, 3)
@@ -463,7 +470,7 @@ layer_1/name = "Mid"
 layer_1/tile_data = PackedInt32Array(131071, 0, 0, 65536, 0, 0, 262141, 0, 0, 262140, 0, 0, -196606, 0, 0, -262141, 0, 0, -262140, 0, 0, -131067, 0, 0, -131066, 0, 0, -131063, 0, 0, -196598, 0, 0, -196597, 0, 0, -131060, 0, 0, 196609, 393216, 0, 196610, 393216, 0, 196611, 393216, 0, 196615, 393216, 0, 196616, 393216, 0, 196618, 393216, 0, 196619, 393216, 0, -196605, 0, 1, -131070, 0, 1, -131069, 0, 1, -196604, 0, 1, -131068, 0, 1, -65531, 0, 1, -65530, 0, 1, 196607, 0, 1, 131072, 0, 1, 327677, 0, 1, 327676, 0, 1, -65527, 0, 1, -131062, 0, 1, -131061, 0, 1, -65524, 0, 1, -65525, 0, 1, -65526, 65536, 0, 196612, 589824, 0, 196613, 655360, 0, 196614, 720896, 0, -131052, 131072, 0, -131051, 131072, 0, -65516, 131072, 1, -65515, 131072, 1, 20, 131072, 1, 21, 196608, 1, 65556, 131072, 1, 65557, 131072, 1, 65558, 131072, 1, 22, 131072, 0, 23, 131072, 0, 65559, 131072, 1, 131092, 131072, 1, 131093, 131072, 1, 131094, 131072, 1, 131095, 131072, 1)
 
 [node name="Player" parent="." instance=ExtResource("1_0vxh4")]
-position = Vector2(328, -34)
+position = Vector2(-50, 46)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(4, 4)
@@ -486,13 +493,28 @@ autoplay = "move"
 [node name="Coins" type="Node" parent="."]
 
 [node name="coin" parent="Coins" instance=ExtResource("4_eao0d")]
-position = Vector2(200, -40)
+position = Vector2(100, -38)
 
 [node name="coin2" parent="Coins" instance=ExtResource("4_eao0d")]
 position = Vector2(169, -58)
 
+[node name="coin4" parent="Coins" instance=ExtResource("4_eao0d")]
+position = Vector2(132, 41)
+
+[node name="coin5" parent="Coins" instance=ExtResource("4_eao0d")]
+position = Vector2(117, 41)
+
+[node name="coin6" parent="Coins" instance=ExtResource("4_eao0d")]
+position = Vector2(85, -38)
+
+[node name="coin7" parent="Coins" instance=ExtResource("4_eao0d")]
+position = Vector2(182, -58)
+
 [node name="coin3" parent="Coins" instance=ExtResource("4_eao0d")]
 position = Vector2(183, 39)
+
+[node name="coin8" parent="Coins" instance=ExtResource("4_eao0d")]
+position = Vector2(165, 39)
 
 [node name="Killzone" parent="." instance=ExtResource("5_n8bv4")]
 position = Vector2(0, 106)
@@ -502,3 +524,8 @@ shape = SubResource("WorldBoundaryShape2D_3d1md")
 
 [node name="enemy" parent="." instance=ExtResource("6_5s1hy")]
 position = Vector2(360, 3)
+
+[node name="ui" parent="." instance=ExtResource("7_oml1y")]
+script = ExtResource("9_rvq5q")
+
+[connection signal="score_changed" from="GameManager" to="ui" method="_on_game_manager_score_changed"]

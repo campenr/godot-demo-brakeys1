@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://kpa8a5brng04"]
+
+[ext_resource type="FontFile" uid="uid://cykdko26ehvgt" path="res://assets/fonts/PixelOperator8.ttf" id="1_iw700"]
+
+[sub_resource type="GDScript" id="GDScript_h8vag"]
+script/source = "extends Label
+"
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(5.01223, 1.03606)
+color = Color(0.516927, 0.332251, 0.877071, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 4.0
+offset_top = 7.0
+offset_right = 144.0
+offset_bottom = 30.0
+scale = Vector2(1, 1.0052)
+theme_override_fonts/font = ExtResource("1_iw700")
+theme_override_font_sizes/font_size = 24
+text = "Score:"
+
+[node name="Score" type="Label" parent="."]
+offset_left = 166.0
+offset_top = 8.0
+offset_right = 191.0
+offset_bottom = 32.0
+scale = Vector2(0.879999, 1.0052)
+theme_override_fonts/font = ExtResource("1_iw700")
+theme_override_font_sizes/font_size = 24
+text = "0"
+script = SubResource("GDScript_h8vag")
