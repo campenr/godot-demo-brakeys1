@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cahi0k2wvggek"]
+[gd_scene load_steps=25 format=3 uid="uid://cahi0k2wvggek"]
 
 [ext_resource type="Texture2D" uid="uid://dlv6tbw4k5qod" path="res://assets/sprites/knight.png" id="1_e12ud"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_uo0wi"]
@@ -21,10 +21,6 @@ region = Rect2(64, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_0dbrq"]
 atlas = ExtResource("1_e12ud")
 region = Rect2(96, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s4qsj"]
-atlas = ExtResource("1_e12ud")
-region = Rect2(64, 96, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dapy7"]
 atlas = ExtResource("1_e12ud")
@@ -109,13 +105,10 @@ animations = [{
 "name": &"idle",
 "speed": 10.0
 }, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s4qsj")
-}],
+"frames": [],
 "loop": true,
 "name": &"jump",
-"speed": 10.0
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -183,5 +176,5 @@ shape = SubResource("CircleShape2D_t7ya4")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_3ee7w")
-animation = &"jump"
+animation = &"idle"
 autoplay = "idle"
