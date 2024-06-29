@@ -1,5 +1,6 @@
 extends Area2D
 
+
 var main
 
 
@@ -8,5 +9,4 @@ func _ready():
 
 
 func _on_body_entered(body):
-	main.scored() 
-	queue_free()	
+	main.load_level_complete()
