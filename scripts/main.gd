@@ -9,6 +9,7 @@ var current_level
 var current_level_index: int = 0
 
 @onready var hud = $hud
+@onready var score_update_timer = $ScoreUpdateTimer
 
 
 func _ready():
@@ -41,11 +42,6 @@ func load_level_complete():
 	var level_path = "res://scenes/levels/level_complete.tscn"
 	current_level = load(level_path).instantiate()
 	add_child(current_level)
-	
-	# upodate scores
-	score += level_score
-	level_score = 0
-	score_changed.emit(level_score)
 
 
 func scored():

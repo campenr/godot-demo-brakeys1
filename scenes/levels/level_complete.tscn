@@ -449,9 +449,9 @@ script = null
 layout_mode = 3
 anchors_preset = 0
 offset_left = -34.0
-offset_top = -35.0
+offset_top = -27.0
 offset_right = -34.0
-offset_bottom = -35.0
+offset_bottom = -27.0
 
 [node name="Button" type="Button" parent="Control"]
 layout_direction = 2
@@ -470,6 +470,45 @@ offset_bottom = 25.0
 theme_override_fonts/font = ExtResource("5_2s3qw")
 theme_override_font_sizes/font_size = 8
 text = "Continue"
+
+[node name="Scores" type="CanvasGroup" parent="."]
+position = Vector2(-2, 0)
+
+[node name="TotalLabel" type="Label" parent="Scores"]
+offset_left = -28.0
+offset_top = -45.0
+offset_right = 13.0
+offset_bottom = -36.0
+theme_override_fonts/font = ExtResource("5_2s3qw")
+theme_override_font_sizes/font_size = 8
+text = "Total"
+
+[node name="TotalScore" type="Label" parent="Scores"]
+offset_left = 29.0
+offset_top = -45.0
+offset_right = 38.0
+offset_bottom = -36.0
+theme_override_fonts/font = ExtResource("5_2s3qw")
+theme_override_font_sizes/font_size = 8
+text = "0"
+
+[node name="LevelLabel" type="Label" parent="Scores"]
+offset_left = -28.0
+offset_top = -57.0
+offset_right = 13.0
+offset_bottom = -48.0
+theme_override_fonts/font = ExtResource("5_2s3qw")
+theme_override_font_sizes/font_size = 8
+text = "Level"
+
+[node name="LevelScore" type="Label" parent="Scores"]
+offset_left = 29.0
+offset_top = -57.0
+offset_right = 38.0
+offset_bottom = -48.0
+theme_override_fonts/font = ExtResource("5_2s3qw")
+theme_override_font_sizes/font_size = 8
+text = "0"
 
 [connection signal="timeout" from="TileMaps/Background/TimerX" to="TileMaps/Background" method="_on_timer_timeout"]
 [connection signal="pressed" from="Control/Button" to="." method="_on_pressed"]
